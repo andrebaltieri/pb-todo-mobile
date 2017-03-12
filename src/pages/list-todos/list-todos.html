@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Minhas Tarefas</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item-sliding #slidingItem *ngFor="let todo of todos">
+      <ion-item>
+        <h2>{{ todo.title }}</h2>
+        <p *ngIf="todo.done"><ion-badge color="secondary">CONCLUÍDO</ion-badge></p>
+        <p *ngIf="!todo.done"><ion-badge color="danger">À FAZER</ion-badge></p>
+      </ion-item>
+      <ion-item-options side="right">
+        <button (click)="markAsDone(slidingItem, todo.id)" ion-button color="secondary">
+          <ion-icon name="checkmark"></ion-icon>
+          CONCLUIR
+        </button>
+        <button (click)="remove(slidingItem, todo.id)" ion-button color="danger">
+          <ion-icon name="close"></ion-icon>
+          REMOVER
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>
